@@ -1,20 +1,32 @@
 import React from "react";
 import ytLogo from "../Assets/yt-logo.png"
+import { useDispatch } from "react-redux";
+import { toggleMenu } from "../utils/appSlice";
 
 const Head = () => {
+
+  const dispatch = useDispatch();
+
+  const toggleMenuHandler = () => {
+    dispatch(toggleMenu());
+  };
+
   return (
     <div className="grid grid-flow-col p-3 m-2 shadow-lg">
       <div className="flex col-span-1">
         <img
-        className="h-8"
+        onClick={() => toggleMenuHandler()}
+        className="h-8 cursor-pointer"
           alt="menu"
           src="https://cdn.iconscout.com/icon/free/png-256/free-hamburger-menu-462145.png?f=webp"
         />
+        <a href="/">
         <img
         className="h-8 mx-2"
           alt="yt-logo"
           src={ytLogo}
         />
+        </a>
       </div>
       <div className="col-span-10 justify-items-center pl-28">
         <input 
