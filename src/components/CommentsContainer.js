@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GOOGLE_API_KEY } from '../utils/constants'
 import Comment from './Comment';
+import CommentLogo from '../Assets/comment-logo.png';
 
 const CommentsContainer = ({ videoId }) => {
   const [comments, setComments] = useState([]);
@@ -12,6 +13,7 @@ const CommentsContainer = ({ videoId }) => {
           `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&order=relevance&videoId=${videoId}&key=${GOOGLE_API_KEY}`
         );
         const data = await response.json();
+        //console.log(data);
         if (data.items) {
           setComments(data.items);
         }
@@ -24,8 +26,26 @@ const CommentsContainer = ({ videoId }) => {
   }, [videoId]);
 
   return (
-    <div className="order-3 w-full flex flex-col basis-8/12 max-w-[725px] flex-grow ml-5 rounded-xl shadow-lg">
-      <h2 className="font-bold mb-4 mt-3 text-lg p-2">Comments 327</h2>
+    <div className="order-3 w-full flex flex-col basis-8/12 
+    max-w-[725px] flex-grow ml-5 rounded-xl shadow-lg bg-black">
+      <h2 className="font-bold   mt-2 text-lg p-1 ">
+        Comments 327
+        <span className="flex mt-2 ml-3 h-8">
+          <img
+            className="h-9 w-9 rounded-full mr-2 flex "
+            src={CommentLogo}
+            alt="comment-logo"
+          />
+          <input
+            type="text"
+            className="w-full px-2 py-2 outline-none text-white font-normal placeholder:text-sm
+             bg-black placeholder-white placeholder:opacity-55 border-b-[1.5px]
+              border-white border-opacity-50 text-sm flex mb-1
+              focus:border-white transition duration-300" 
+            placeholder="Add a comment..."
+          />
+        </span>
+      </h2>
       <ul>
         {comments.map((comment) => (
           <Comment key={comment.id} comment={comment} />

@@ -14,6 +14,7 @@ const ButtonList = () => {
       <Button name="Arijit Singh" />
       <Button name="Albums" />
       <Button name="Watched" />
+      <Button name="remix" />
     </div>
   )
 }
