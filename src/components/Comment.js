@@ -1,9 +1,23 @@
 import React, { useState } from "react";
-import Like from "../Assets/like.jpg";
-import Dislike from "../Assets/dislike.jpg";
+// import Like from "../Assets/like.jpg";
+// import Dislike from "../Assets/dislike.jpg";
+import { BiLike } from "react-icons/bi";
+import { BiSolidLike } from "react-icons/bi";
+import { BiDislike } from "react-icons/bi";
+import { BiSolidDislike } from "react-icons/bi";
 
 const Comment = ({ comment }) => {
   const [showReplies, setShowReplies] = useState(false);
+  const [showLike, setShowLike] = useState(false);
+  const [showDislike, setShowDislike] = useState(false);
+
+  const toggleDislike = () => {
+    setShowDislike(!showDislike);
+  };
+
+  const toggleLike = () => {
+    setShowLike(!showLike);
+  };
 
   const toggleReplies = () => {
     setShowReplies(!showReplies);
@@ -29,14 +43,14 @@ const Comment = ({ comment }) => {
           <p className="font-medium opacity-60 hover:underline cursor-pointer">
             Translate to English
           </p>
-          <span className="flex h-5 m-2  text-sm">
-            <img className="mr-2 cursor-pointer" src={Like} alt="like-btn" />{" "}
+          <span className=" flex">
+            <button onClick={toggleLike} className="outline-none pr-2">
+              {showLike ? <BiSolidLike /> : <BiLike />}
+            </button>
             {comment?.snippet?.topLevelComment?.snippet?.likeCount}
-            <img
-              className="ml-5 mt-[0.7px] cursor-pointer"
-              src={Dislike}
-              alt="dislike-btn"
-            />
+            <button onClick={toggleDislike} className="px-2 outline-none">
+              {showDislike ? <BiSolidDislike /> : <BiDislike />}
+            </button>
           </span>
           {comment.replies && comment.replies.comments.length > 0 && (
             <button
@@ -66,17 +80,22 @@ const Comment = ({ comment }) => {
                       Translate to English
                     </p>
                     <span className="flex h-5 m-2  text-sm">
-                      <img
-                        className="mr-2 cursor-pointer"
-                        src={Like}
-                        alt="like-btn"
-                      />{" "}
-                      {comment?.replies?.comments?.[Array.length]?.snippet?.likeCount}
-                      <img
-                        className="ml-5 mt-[1px] cursor-pointer"
-                        src={Dislike}
-                        alt="dislike-btn"
-                      />
+                      <button
+                        onClick={toggleLike}
+                        className="outline-none pr-2"
+                      >
+                        {showLike ? <BiSolidLike /> : <BiLike />}
+                      </button>
+                      {
+                        comment?.replies?.comments?.[Array.length]?.snippet
+                          ?.likeCount
+                      }
+                      <button
+                        onClick={toggleDislike}
+                        className="px-2 outline-none"
+                      >
+                        {showDislike ? <BiSolidDislike /> : <BiDislike />}
+                      </button>
                     </span>
                   </div>
                 </li>

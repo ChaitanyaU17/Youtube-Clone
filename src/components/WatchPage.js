@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { closeMenu } from '../utils/appSlice';
 import { useSearchParams } from 'react-router-dom';
 import CommentsContainer from './CommentsContainer';
+import VideoInfo from './VideoInfo';
 
 const WatchPage = () => {
   const [searchParams] = useSearchParams();
@@ -11,10 +12,10 @@ const WatchPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(closeMenu());
-  }, []);
+  }, [dispatch]);
 
   return (
-    <div className='flex flex-col ml-5 text-white'>
+    <div className='flex flex-col  ml-5 text-white'>
       <div className='pl-4 pt-3'>
         <iframe
           width="733"
@@ -29,6 +30,9 @@ const WatchPage = () => {
         ></iframe>
       </div>
       <CommentsContainer videoId={videoId} />
+      <div>
+         <VideoInfo />
+      </div>     
     </div>
   );
 };
