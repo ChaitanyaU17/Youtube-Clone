@@ -56,10 +56,13 @@ const Sidebar = () => {
           )}
         </ul>
       </div>
-    </div>
-  
+    </div> 
+    );
+};
 
-      //   <div className="p-5 shadow-lg w-48 text-white">
+export default Sidebar;
+
+ //   <div className="p-5 shadow-lg w-48 text-white">
       //     <div className='leading-8 '>
       //     <ul className='ml-8'>
       //       <li>
@@ -93,7 +96,3 @@ const Sidebar = () => {
       //     </ul>
       //     </div>
       //   </div>
-    );
-};
-
-export default Sidebar;

@@ -11,9 +11,10 @@ const ButtonList = () => {
       <Button name="JavaScript" />
       <Button name="Mixes" />
       <Button name="Playlists" />
-      <Button name="Arijit Singh" />
+      <Button name="Arijit" />
       <Button name="Albums" />
       <Button name="Watched" />
+      <Button name="DJ" />
       <Button name="remix" />
     </div>
   )
