@@ -1,11 +1,11 @@
 import React from 'react'
-import ButtonList from './ButtonList'
+import Button from './Button'
 import VideoContainer from './VideoContainer'
 
 const MainContainer = () => {
   return (
     <div className='ml-14'>
-      <ButtonList />
+      <Button />
       <VideoContainer />
     </div>
   )

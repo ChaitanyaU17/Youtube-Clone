@@ -38,5 +38,3 @@ export function makeRandomMessage(length) {
     }
     return result;
 }
-
-console.log(makeRandomMessage(5));
