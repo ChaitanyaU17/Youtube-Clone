@@ -10,28 +10,28 @@ const VideoInfo = ({ videoId }) => {
         const response = await fetch(`${YOUTUBE_INFO_API}&id=${videoId}`);
         const json = await response.json();
         setInfo(json.items[0]);
+        console.log(json.items[0]);
       } catch (error) {
         console.error('Error fetching video info:', error);
       }
     };
-
+    
     if (videoId) {
       fetchVideoInfo();
     }
   }, [videoId]);
 
-  if (!info) return null;
+  if (!info) return <div>Loading...</div>;
 
   const { snippet, statistics } = info;
-  const { channelTitle, title, description, thumbnails } = snippet;
 
   return (
-    <div className="flex flex-col text-white p-4">
-      <img src={thumbnails.medium.url} alt={title} className="w-full h-auto rounded-lg" />
-      <h1 className="text-xl font-bold mt-4">{title}</h1>
-      <h2 className="text-md text-gray-400">{channelTitle}</h2>
-      <p className="text-sm mt-2">{description}</p>
-      <p className="text-sm text-gray-400 mt-2">{statistics.viewCount} views</p>
+    <div className='ml-4 pt-2 max-w-[725px]'>
+      <h1 className='text-2xl font-bold'>{snippet.title}</h1>
+      <p className='mt-2'>{snippet.description}</p>
+      <p className='mt-2'>Views: {statistics.viewCount}</p>
+      <p className='mt-2'>Likes: {statistics.likeCount}</p>
+      <p className='mt-2'>Comments: {statistics.commentCount}</p>
     </div>
   );
 };

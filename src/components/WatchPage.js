@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from "react-redux";
-import { closeMenu } from '../utils/appSlice';
+import { closeMenu } from '../store/appSlice';
 import { useSearchParams } from 'react-router-dom';
 import CommentsContainer from './CommentsContainer';
-import VideoInfo from './VideoInfo';
+// import VideoInfo from './VideoInfo';
 import LiveChat from './LiveChat';
 
 const WatchPage = () => {
@@ -36,9 +36,9 @@ const WatchPage = () => {
         </div>
       </div>
       <CommentsContainer videoId={videoId} />
-      <div>
+      {/* <div>
          <VideoInfo videoId={videoId}/>
-      </div>     
+      </div>      */}
     </div>
   );
 };

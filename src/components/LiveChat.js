@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ChatMessage from './ChatMessage'
-import { addMessage } from '../utils/chatSlice';
+import { addMessage } from '../store/chatSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { generateRandomName, makeRandomMessage } from '../utils/helper';
@@ -28,7 +28,7 @@ const LiveChat = () => {
         }, 3000);
         
         return () => clearInterval(i);
-    }, []);
+    }, );
 
   return (
     <>
