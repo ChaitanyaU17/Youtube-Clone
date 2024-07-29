@@ -1,3 +1,5 @@
+import { GOOGLE_API_KEY, YOUTUBE_INFO_API } from './constants';
+
 var nameList = [
     'Time','Past','Future','Dev',
     'Fly','Flying','Soar','Soaring','Power','Falling',
@@ -37,4 +39,13 @@ export function makeRandomMessage(length) {
       counter += 1;
     }
     return result;
+}
+
+export async function fetchDataFromApi(endpoint) {
+  const response = await fetch(`${YOUTUBE_INFO_API}${endpoint}&key=${GOOGLE_API_KEY}`);
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  const data = await response.json();
+  return data;
 }

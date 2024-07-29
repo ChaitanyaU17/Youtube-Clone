@@ -13,15 +13,15 @@ function App() {
       element: <Body />,
       children: [
         {
-          path: "/",
+          index: true,
           element: <MainContainer />,
         },
         {
-          path: "/results",
+          path: "results",
           element: <MainContainer />,
         },
         {
-          path: "/watch",
+          path: "watch",
           element: <WatchPage />,
         },
       ],

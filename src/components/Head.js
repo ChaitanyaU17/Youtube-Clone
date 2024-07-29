@@ -6,6 +6,7 @@ import { YOUTUBE_SEARCH_API } from "../utils//constants";
 import search from "../Assets/search.png";
 import { cacheResults } from "../store/searchSlice";
 import { Link } from "react-router-dom";
+import { setQuery } from "../store/searchSlice";
 
 // const Head = () => {
 //   const [searchQuery, setSearchQuery] = useState("");
@@ -74,6 +75,10 @@ const Head = () => {
   const searchCache = useSelector((store) => store.search);
   const dispatch = useDispatch();
 
+  const handleSearch = () => {
+    dispatch(setQuery(searchQuery));
+  };
+
   useEffect(() => {
     const getSearchSuggestion = async () => {
       const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
@@ -102,6 +107,8 @@ const Head = () => {
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
   };
+
+
   return (
     <div className="sticky top-0 z-50 bg-black grid grid-flow-col h-16 shadow-lg ">
       <div className="flex col-span-1 items-center px-6">
@@ -112,17 +119,13 @@ const Head = () => {
           src="https://i.pinimg.com/736x/ee/c0/71/eec071442e9a1b8e017c5a7c1853b880.jpg"
         />
         <Link href="/">
-          <img
-            className="h-[22px] mx-4"
-            alt="yt-logo"
-            src={ytLogo}
-          />
+          <img className="h-[22px] mx-4" alt="yt-logo" src={ytLogo} />
         </Link>
       </div>
       <div className="col-span-10 pt-3">
         <div className="flex items-center ml-12 w-[65%] ">
           <input
-           className="
+            className="
            w-full text-white placeholder:text-gray-400 px-5 py-2 rounded-l-full
            focus:outline-none focus:ring-2 focus:ring-opacity-10 focus:ring-blue-600 
            focus:border-blue-500 focus:shadow-md bg-black border border-gray-500 
@@ -133,15 +136,26 @@ const Head = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowSuggestion(true)}
             onBlur={() => setShowSuggestion(false)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleSearch();
+            }}
           />
-          <button className="py-[10px] bg-[#212121]
-                             rounded-r-full ml-[0.5px] px-4 flex items-center justify-center">
-            <img className="h-6 w-7 opacity-85" src={search} alt="search-icon" />
+          <button
+            className="py-[10px] bg-[#212121] rounded-r-full ml-[0.5px] px-4 flex items-center justify-center"
+            onClick={handleSearch}
+          >
+            <img
+              className="h-6 w-7 opacity-85"
+              src={search}
+              alt="search-icon"
+            />
           </button>
         </div>
         {showSuggestion && (
-          <div className="fixed  ml-12 bg-[#212121] min-w-[43%] rounded-xl mt-1 
-                          border border-black shadow-lg text-white">
+          <div
+            className="fixed  ml-12 bg-[#212121] min-w-[43%] rounded-xl mt-1 
+                          border border-black shadow-lg text-white"
+          >
             <ul>
               {suggestions.map((s) => (
                 <li
