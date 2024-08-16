@@ -1,3 +1,4 @@
+// App.js
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Body from "./components/Body";
@@ -18,7 +19,7 @@ function App() {
         },
         {
           path: "results",
-          element: <MainContainer />,
+          element: <MainContainer />, // Ensure this includes SearchResults if needed
         },
         {
           path: "watch",
