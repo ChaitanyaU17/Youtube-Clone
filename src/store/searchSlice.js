@@ -7,6 +7,7 @@ export const fetchSearchResults = createAsyncThunk(
       const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${query}&type=video&key=${GOOGLE_API_KEY}`);
       const data = await response.json();
       return data.items;
+      console.log(data);
     }
   );
 
