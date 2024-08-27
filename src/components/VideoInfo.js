@@ -31,7 +31,7 @@ const VideoInfo = ({ videoId }) => {
       <p className='mt-2'>{snippet.description}</p>
       <p className='mt-2'>Views {statistics.viewCount}</p>
       <p className='mt-2'>Likes {statistics.likeCount}</p>
-      <p className='mt-2'>Comments {statistics.commentCount}</p>
+     
     </div>
   );
 };
